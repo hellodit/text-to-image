@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"github.com/golang/freetype"
 	"golang.org/x/image/draw"
 	"image"
@@ -36,6 +37,10 @@ type Caption struct {
 }
 
 func main() {
+	text := flag.String("text", "Default text", "This text will be convert to image")
+	fontsize := flag.Float64("fontsize", 25, "Define font size")
+	flag.Parse()
+
 	rand.Seed(time.Now().UTC().UnixNano())
 	imageName := strconv.Itoa(rand.Int()) + ".png"
 	log.Println("Image name: ", imageName)
@@ -48,17 +53,16 @@ func main() {
 	}
 
 	caption := &Caption{
-		FontSize: 35,
+		FontSize: *fontsize,
 		X:        20,
 		Y:        background.Height / 4 * 3,
-		Text:     "Cara Makan dengan baik dan benar",
+		Text:     *text,
 		FontPath: "./font/nutino-sans/",
 		FontType: "NunitoSans-SemiBold.ttf",
 		Color:    image.Black,
 		DPI:      72,
 		Spacing:  1.5,
 	}
-	log.Println("LOkasi ", caption.Y)
 	img, err := background.generateImageBg()
 	if err != nil {
 		log.Fatal(err)
