@@ -44,21 +44,21 @@ func main() {
 		Name:   imageName,
 		Width:  1280,
 		Height: 720,
-		Color:  color.RGBA{R: 100, G: 200, B: 200, A: 0xff},
+		Color:  color.RGBA{R: 242, G: 239, B: 228, A: 0xff},
 	}
 
 	caption := &Caption{
-		FontSize: 100,
+		FontSize: 35,
 		X:        20,
-		Y:        20,
-		Text:     "Use filepath.Join to create the path from the directory dir and the file name.\n\n",
-		FontPath: "./font/bebas/",
-		FontType: "BebasNeue-Regular.ttf",
+		Y:        background.Height / 4 * 3,
+		Text:     "Cara Makan dengan baik dan benar",
+		FontPath: "./font/nutino-sans/",
+		FontType: "NunitoSans-SemiBold.ttf",
 		Color:    image.Black,
 		DPI:      72,
 		Spacing:  1.5,
 	}
-
+	log.Println("LOkasi ", caption.Y)
 	img, err := background.generateImageBg()
 	if err != nil {
 		log.Fatal(err)
